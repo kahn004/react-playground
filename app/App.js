@@ -1,7 +1,12 @@
-// var React = require('react');
-// var Router = require('react-router');
-// var routes = require('./config/routes');
+import React from 'react'
+import { render } from 'react-dom'
+import { Router, Route } from 'react-router'
 
-// Router.run(routes, function(Root) {
-// 	React.render(<Root />, document.getElementById('app'));
-// });
+import routes from './config/routes'
+import Main from './components/Main'
+
+render((
+	<Router>
+		<Route path="/" component={Main}/>
+	</Router>
+), document.getElementById('app'))
