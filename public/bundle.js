@@ -60,14 +60,10 @@
 
 	var _configRoutes2 = _interopRequireDefault(_configRoutes);
 
-	var _componentsMain = __webpack_require__(235);
-
-	var _componentsMain2 = _interopRequireDefault(_componentsMain);
-
 	(0, _reactDom.render)(_react2['default'].createElement(
 		_reactRouter.Router,
 		null,
-		_react2['default'].createElement(_reactRouter.Route, { path: '/', component: _componentsMain2['default'] })
+		_configRoutes2['default']
 	), document.getElementById('app'));
 
 /***/ },
@@ -24209,7 +24205,11 @@
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {'use strict';
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
@@ -24217,37 +24217,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(158);
+
 	var _componentsMain = __webpack_require__(235);
 
 	var _componentsMain2 = _interopRequireDefault(_componentsMain);
 
-	var _componentsHome = __webpack_require__(236);
+	var routes = _react2['default'].createElement(_reactRouter.Route, { path: '/', component: _componentsMain2['default'] });
 
-	var _componentsHome2 = _interopRequireDefault(_componentsHome);
-
-	var _reactRouter = __webpack_require__(158);
-
-	module['export'] = _react2['default'].createElement(_reactRouter.Route, { path: '/', component: _componentsMain2['default'] });
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(234)(module)))
+	exports['default'] = routes;
+	module.exports = exports['default'];
 
 /***/ },
-/* 234 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	module.exports = function (module) {
-		if (!module.webpackPolyfill) {
-			module.deprecate = function () {};
-			module.paths = [];
-			// module.parent = undefined by default
-			module.children = [];
-			module.webpackPolyfill = 1;
-		}
-		return module;
-	};
-
-/***/ },
+/* 234 */,
 /* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -24286,7 +24268,7 @@
 				return _react2['default'].createElement(
 					'div',
 					null,
-					'Welcome Sam.'
+					'Welcome Sam. Let\'s get started.'
 				);
 			}
 		}]);
@@ -24296,26 +24278,6 @@
 
 	exports['default'] = Main;
 	module.exports = exports['default'];
-
-/***/ },
-/* 236 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-
-	var Home = React.createClass({
-		displayName: 'Home',
-
-		render: function render() {
-			return React.createElement(
-				'h2',
-				null,
-				'Home'
-			);
-		}
-	});
 
 /***/ }
 /******/ ]);

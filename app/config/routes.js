@@ -1,8 +1,10 @@
 import React from 'react'
-import Main from '../components/Main'
-import Home from '../components/Home'
 import { Route } from 'react-router'
 
-module.export = (
-	<Route path="/" component={Main}/>
+import Main from '../components/Main'
+
+var routes = (
+	<Route path="/" component={ Main }/>
 )
+
+export default routes
