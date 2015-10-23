@@ -1,9 +1,11 @@
-var React = require('react');
+import React from 'react'
 
-var Home = React.createClass({
-	render: function () {
+export default class Home extends React.Component {
+	render () {
 		return (
-			<h2>Home</h2>
-		);
+			<div className="text-center">
+				<h2>Search by Github Username Above</h2>
+			</div>
+		)
 	}
-});
+}
