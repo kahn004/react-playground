@@ -46,7 +46,19 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	// app/App.js
 
 	var _react = __webpack_require__(1);
 
@@ -56,280 +68,53 @@
 
 	var _reactRouter = __webpack_require__(159);
 
-	var Hello = _react2['default'].createClass({
-		displayName: 'Hello',
+	var _componentsMain = __webpack_require__(210);
 
-		render: function render() {
-			return _react2['default'].createElement(
-				'nav',
-				{ className: 'navbar navbar-inverse' },
-				_react2['default'].createElement(
-					'div',
-					{ className: 'container-fluid' },
-					_react2['default'].createElement(
-						'div',
-						{ className: 'navbar-header' },
-						_react2['default'].createElement(
-							'button',
-							{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar', 'aria-expanded': 'false', 'aria-controls': 'navbar' },
-							_react2['default'].createElement(
-								'span',
-								{ className: 'sr-only' },
-								'Toggle navigation'
-							),
-							_react2['default'].createElement('span', { className: 'icon-bar' }),
-							_react2['default'].createElement('span', { className: 'icon-bar' }),
-							_react2['default'].createElement('span', { className: 'icon-bar' })
-						),
-						_react2['default'].createElement(
-							'a',
-							{ className: 'navbar-brand' },
-							'Pizza Client'
-						)
-					),
-					_react2['default'].createElement(
-						'div',
-						{ id: 'navbar', className: 'navbar-collapse collapse' },
-						_react2['default'].createElement(
-							'ul',
-							{ className: 'nav navbar-nav' },
-							_react2['default'].createElement(
-								'li',
-								null,
-								_react2['default'].createElement(
-									_reactRouter.Link,
-									{ to: '/' },
-									'Home'
-								)
-							),
-							_react2['default'].createElement(
-								'li',
-								null,
-								_react2['default'].createElement(
-									_reactRouter.Link,
-									{ to: '/about' },
-									'About'
-								)
-							),
-							_react2['default'].createElement(
-								'li',
-								null,
-								_react2['default'].createElement(
-									_reactRouter.Link,
-									{ to: '/pizzerias' },
-									'Pizzerias'
-								)
-							)
-						)
-					)
-				)
-			);
-		}
-	});
+	var _componentsMain2 = _interopRequireDefault(_componentsMain);
 
-	var App = _react2['default'].createClass({
-		displayName: 'App',
+	var _componentsAbout = __webpack_require__(213);
 
-		render: function render() {
-			return _react2['default'].createElement(
-				'div',
-				null,
-				_react2['default'].createElement(Hello, { name: 'Router' }),
-				this.props.children
-			);
-		}
-	});
+	var _componentsAbout2 = _interopRequireDefault(_componentsAbout);
 
-	var Pizzerias = _react2['default'].createClass({
-		displayName: 'Pizzerias',
+	var _componentsPizzerias = __webpack_require__(211);
 
-		getInitialState: function getInitialState() {
-			return {
-				locations: [{
-					type: 'Feature',
-					properties: {
-						city: 'Oakland',
-						pizzeria: 'Hi-Life',
-						website: 'http://www.hilifeoakland.com',
-						address: '400 15th St',
-						markersize: 'medium',
-						markercolor: 'ffff00',
-						markersymbol: 'restaurant'
-					},
-					geometry: {
-						type: 'Point',
-						coordinates: [-122.2694895, 37.805068]
-					}
-				}, {
-					type: 'Feature',
-					properties: {
-						city: 'Oakland',
-						pizzeria: 'Zachary\'s',
-						website: 'http://zacharys.com/locations/oakland',
-						address: '5801 College Ave.',
-						markersize: 'medium',
-						markercolor: 'ffff00',
-						markersymbol: 'restaurant'
-					},
-					geometry: {
-						type: 'Point',
-						coordinates: [-122.2521705, 37.8462724]
-					}
-				}]
-			};
-		},
-		// componentDidMount() {
-		// 	$.ajax({
-		// 		url: './api/pizzerias.json',
-		// 		type: 'get',
-		// 		dataType: 'JSON',
-		// 		success: function(data) {
-		// 			console.log(data);
-		// 			this.setState({ locations: data})
-		// 		}.bind(this)
-		// 	})
-		// },
-		render: function render() {
-			var pizzerias = this.state.locations.map(function (pizzeria, index) {
-				var location = pizzeria.properties;
-				return _react2['default'].createElement(
-					'div',
-					{ className: 'thumbnail', key: index },
-					_react2['default'].createElement(
-						'div',
-						{ className: 'caption' },
-						_react2['default'].createElement(
-							'h5',
-							null,
-							_react2['default'].createElement(
-								_reactRouter.Link,
-								{ to: '/pizzerias/' + (index + 1) },
-								location.pizzeria
-							)
-						)
-					)
-				);
-			});
-			return _react2['default'].createElement(
-				'div',
-				null,
-				_react2['default'].createElement(
-					'h3',
-					null,
-					'Pizzerias'
-				),
-				pizzerias
-			);
-		}
-	});
+	var _componentsPizzerias2 = _interopRequireDefault(_componentsPizzerias);
 
-	var Pizzeria = _react2['default'].createClass({
-		displayName: 'Pizzeria',
+	var _componentsPizzeria = __webpack_require__(214);
 
-		getInitialState: function getInitialState() {
+	var _componentsPizzeria2 = _interopRequireDefault(_componentsPizzeria);
 
-			return {
-				locations: [{
-					type: 'Feature',
-					properties: {
-						city: 'Oakland',
-						pizzeria: 'Hi-Life',
-						website: 'http://www.hilifeoakland.com',
-						address: '400 15th St',
-						markersize: 'medium',
-						markercolor: 'ffff00',
-						markersymbol: 'restaurant'
-					},
-					geometry: {
-						type: 'Point',
-						coordinates: [-122.2694895, 37.805068]
-					}
-				}, {
-					type: 'Feature',
-					properties: {
-						city: 'Oakland',
-						pizzeria: 'Zachary\'s',
-						website: 'http://zacharys.com/locations/oakland',
-						address: '5801 College Ave.',
-						markersize: 'medium',
-						markercolor: 'ffff00',
-						markersymbol: 'restaurant'
-					},
-					geometry: {
-						type: 'Point',
-						coordinates: [-122.2521705, 37.8462724]
-					}
-				}]
-			};
-		},
-		render: function render() {
-			var a = this.props.params.id - 1;
-			if (this.state.locations[a].properties !== undefined) {
-				var _location = this.state.locations[a].properties;
+	var _apiApi = __webpack_require__(209);
 
-				return _react2['default'].createElement(
-					'div',
-					null,
-					_react2['default'].createElement(
-						_reactRouter.Link,
-						{ to: '/pizzerias', className: 'btn btn-lg btn-danger', id: 'btn-back' },
-						'Back to list'
-					),
-					_react2['default'].createElement(
-						'div',
-						{ className: 'thumbnail' },
-						_react2['default'].createElement(
-							'div',
-							{ className: 'caption' },
-							_react2['default'].createElement(
-								'h5',
-								null,
-								_location.pizzeria
-							),
-							_react2['default'].createElement(
-								'a',
-								{ href: 'https://www.google.com/maps/place/' + _location.address + ' ' + _location.city, target: '_blank' },
-								_location.address
-							),
-							_react2['default'].createElement(
-								'p',
-								null,
-								_location.city
-							),
-							_react2['default'].createElement(
-								'a',
-								{ href: _location.website, target: '_blank' },
-								'Website'
-							)
-						)
-					)
-				);
-			} else {
-				return false;
+	var _apiApi2 = _interopRequireDefault(_apiApi);
+
+	var App = (function (_React$Component) {
+		function App() {
+			_classCallCheck(this, App);
+
+			if (_React$Component != null) {
+				_React$Component.apply(this, arguments);
 			}
 		}
-	});
 
-	var About = _react2['default'].createClass({
-		displayName: 'About',
+		_inherits(App, _React$Component);
 
-		render: function render() {
-			return _react2['default'].createElement(
-				'div',
-				null,
-				_react2['default'].createElement(
-					'h1',
+		_createClass(App, [{
+			key: 'render',
+			value: function render() {
+				return _react2['default'].createElement(
+					'div',
 					null,
-					'About'
-				),
-				_react2['default'].createElement(
-					'p',
-					null,
-					'words..'
-				)
-			);
-		}
-	});
+					_react2['default'].createElement(_componentsMain2['default'], { name: 'Router' }),
+					this.props.children
+				);
+			}
+		}]);
+
+		return App;
+	})(_react2['default'].Component);
+
+	exports['default'] = App;
 
 	(0, _reactDom.render)(_react2['default'].createElement(
 		_reactRouter.Router,
@@ -337,11 +122,12 @@
 		_react2['default'].createElement(
 			_reactRouter.Route,
 			{ path: '/', component: App },
-			_react2['default'].createElement(_reactRouter.Route, { path: '/pizzerias', component: Pizzerias }),
-			_react2['default'].createElement(_reactRouter.Route, { path: '/pizzerias/:id', component: Pizzeria }),
-			_react2['default'].createElement(_reactRouter.Route, { path: 'about', component: About })
+			_react2['default'].createElement(_reactRouter.Route, { path: '/pizzerias', component: _componentsPizzerias2['default'] }),
+			_react2['default'].createElement(_reactRouter.Route, { path: '/pizzerias/:id', component: _componentsPizzeria2['default'] }),
+			_react2['default'].createElement(_reactRouter.Route, { path: 'about', component: _componentsAbout2['default'] })
 		)
 	), document.getElementById('app'));
+	module.exports = exports['default'];
 
 /***/ },
 /* 1 */
@@ -24879,6 +24665,500 @@
 	}
 
 	exports['default'] = useBasename;
+	module.exports = exports['default'];
+
+/***/ },
+/* 209 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+	// app/api/api.js
+
+	var locations = [{
+		type: 'Feature',
+		properties: {
+			city: 'Oakland',
+			pizzeria: 'Hi-Life',
+			website: 'http://www.hilifeoakland.com',
+			address: '400 15th St',
+			markersize: 'medium',
+			markercolor: 'ffff00',
+			markersymbol: 'restaurant'
+		},
+		geometry: {
+			type: 'Point',
+			coordinates: [-122.2694895, 37.805068]
+		}
+	}, {
+		type: 'Feature',
+		properties: {
+			city: 'Portland',
+			pizzeria: 'Zachary\'s',
+			website: 'http://zacharys.com/locations/oakland',
+			address: '5801 College Ave.',
+			markersize: 'medium',
+			markercolor: 'ffff00',
+			markersymbol: 'restaurant'
+		},
+		geometry: {
+			type: 'Point',
+			coordinates: [-122.2521705, 37.8462724]
+		}
+	}];
+
+	exports['default'] = locations;
+	module.exports = exports['default'];
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	// app/components/Main.js
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var Main = (function (_React$Component) {
+		function Main() {
+			_classCallCheck(this, Main);
+
+			if (_React$Component != null) {
+				_React$Component.apply(this, arguments);
+			}
+		}
+
+		_inherits(Main, _React$Component);
+
+		_createClass(Main, [{
+			key: 'render',
+			value: function render() {
+				return _react2['default'].createElement(
+					'nav',
+					{ className: 'navbar navbar-inverse' },
+					_react2['default'].createElement(
+						'div',
+						{ className: 'container-fluid' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'navbar-header' },
+							_react2['default'].createElement(
+								'button',
+								{ type: 'button', className: 'navbar-toggle collapsed', 'data-toggle': 'collapse', 'data-target': '#navbar', 'aria-expanded': 'false', 'aria-controls': 'navbar' },
+								_react2['default'].createElement(
+									'span',
+									{ className: 'sr-only' },
+									'Toggle navigation'
+								),
+								_react2['default'].createElement('span', { className: 'icon-bar' }),
+								_react2['default'].createElement('span', { className: 'icon-bar' }),
+								_react2['default'].createElement('span', { className: 'icon-bar' })
+							),
+							_react2['default'].createElement(
+								'a',
+								{ className: 'navbar-brand' },
+								'Pizza Client'
+							)
+						),
+						_react2['default'].createElement(
+							'div',
+							{ id: 'navbar', className: 'navbar-collapse collapse' },
+							_react2['default'].createElement(
+								'ul',
+								{ className: 'nav navbar-nav' },
+								_react2['default'].createElement(
+									'li',
+									null,
+									_react2['default'].createElement(
+										_reactRouter.Link,
+										{ to: '/' },
+										'Home'
+									)
+								),
+								_react2['default'].createElement(
+									'li',
+									null,
+									_react2['default'].createElement(
+										_reactRouter.Link,
+										{ to: '/about' },
+										'About'
+									)
+								),
+								_react2['default'].createElement(
+									'li',
+									null,
+									_react2['default'].createElement(
+										_reactRouter.Link,
+										{ to: '/pizzerias' },
+										'Pizzerias'
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+
+		return Main;
+	})(_react2['default'].Component);
+
+	exports['default'] = Main;
+	module.exports = exports['default'];
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	// app/components/Pizzerias.js
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _SearchForm = __webpack_require__(212);
+
+	var _SearchForm2 = _interopRequireDefault(_SearchForm);
+
+	var _apiApi = __webpack_require__(209);
+
+	var _apiApi2 = _interopRequireDefault(_apiApi);
+
+	var Pizzerias = (function (_React$Component) {
+		function Pizzerias() {
+			_classCallCheck(this, Pizzerias);
+
+			if (_React$Component != null) {
+				_React$Component.apply(this, arguments);
+			}
+		}
+
+		_inherits(Pizzerias, _React$Component);
+
+		_createClass(Pizzerias, [{
+			key: 'render',
+			value: function render() {
+				var pizzerias = _apiApi2['default'].map(function (pizzeria, index) {
+					var location = pizzeria.properties;
+
+					return _react2['default'].createElement(
+						'div',
+						{ className: 'thumbnail', key: index },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'caption' },
+							_react2['default'].createElement(
+								'h5',
+								null,
+								_react2['default'].createElement(
+									_reactRouter.Link,
+									{ to: '/pizzerias/' + (index + 1) },
+									location.pizzeria
+								)
+							)
+						)
+					);
+				});
+
+				return _react2['default'].createElement(
+					'div',
+					null,
+					_react2['default'].createElement(
+						'h3',
+						null,
+						'Pizzerias'
+					),
+					_react2['default'].createElement(
+						'div',
+						{ id: 'content' },
+						_react2['default'].createElement(
+							'div',
+							{ className: 'col-xs-3' },
+							_react2['default'].createElement(_SearchForm2['default'], { searchInfo: this.handleSearch })
+						),
+						_react2['default'].createElement(
+							'div',
+							{ className: 'col-xs-3' },
+							pizzerias
+						)
+					)
+				);
+			}
+		}]);
+
+		return Pizzerias;
+	})(_react2['default'].Component);
+
+	exports['default'] = Pizzerias;
+	module.exports = exports['default'];
+
+/***/ },
+/* 212 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	// app/components/SearchForm.js
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(158);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var SearchForm = (function (_React$Component) {
+	  function SearchForm(props) {
+	    _classCallCheck(this, SearchForm);
+
+	    _get(Object.getPrototypeOf(SearchForm.prototype), 'constructor', this).call(this, props);
+
+	    this.handleSubmit = this.handleSubmit.bind(this);
+	  }
+
+	  _inherits(SearchForm, _React$Component);
+
+	  _createClass(SearchForm, [{
+	    key: 'handleSubmit',
+	    value: function handleSubmit(event) {
+	      event.preventDefault();
+	      var query = _reactDom2['default'].findDOMNode(this.refs.query).value.trim();
+	      this.submitQuery(query);
+	      _reactDom2['default'].findDOMNode(this.refs.query).value = '';
+	    }
+	  }, {
+	    key: 'submitQuery',
+	    value: function submitQuery(query) {
+	      console.log('Query', query);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2['default'].createElement(
+	        'div',
+	        { className: 'thumbnail', id: 'search-box', onSubmit: this.handleSubmit },
+	        _react2['default'].createElement(
+	          'form',
+	          { id: 'search-form' },
+	          _react2['default'].createElement('input', { type: 'text', className: 'form-control', placeholder: 'search by city', ref: 'query' })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return SearchForm;
+	})(_react2['default'].Component);
+
+	exports['default'] = SearchForm;
+	module.exports = exports['default'];
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	// app/components/About.js
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var About = (function (_React$Component) {
+		function About() {
+			_classCallCheck(this, About);
+
+			if (_React$Component != null) {
+				_React$Component.apply(this, arguments);
+			}
+		}
+
+		_inherits(About, _React$Component);
+
+		_createClass(About, [{
+			key: 'render',
+			value: function render() {
+				return _react2['default'].createElement(
+					'div',
+					null,
+					_react2['default'].createElement(
+						'h1',
+						null,
+						'About'
+					),
+					_react2['default'].createElement(
+						'p',
+						null,
+						'words..'
+					)
+				);
+			}
+		}]);
+
+		return About;
+	})(_react2['default'].Component);
+
+	exports['default'] = About;
+	module.exports = exports['default'];
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	// app/components/Pizzeria.js
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	var _apiApi = __webpack_require__(209);
+
+	var _apiApi2 = _interopRequireDefault(_apiApi);
+
+	var Pizzeria = (function (_React$Component) {
+		function Pizzeria() {
+			_classCallCheck(this, Pizzeria);
+
+			if (_React$Component != null) {
+				_React$Component.apply(this, arguments);
+			}
+		}
+
+		_inherits(Pizzeria, _React$Component);
+
+		_createClass(Pizzeria, [{
+			key: 'render',
+			value: function render() {
+				var a = this.props.params.id - 1;
+				if (_apiApi2['default'][a].properties !== undefined) {
+					var _location = _apiApi2['default'][a].properties;
+
+					return _react2['default'].createElement(
+						'div',
+						null,
+						_react2['default'].createElement(
+							_reactRouter.Link,
+							{ to: '/pizzerias', className: 'btn btn-lg btn-danger', id: 'btn-back' },
+							'Back to list'
+						),
+						_react2['default'].createElement(
+							'div',
+							{ className: 'thumbnail' },
+							_react2['default'].createElement(
+								'div',
+								{ className: 'caption' },
+								_react2['default'].createElement(
+									'h5',
+									null,
+									_location.pizzeria
+								),
+								_react2['default'].createElement(
+									'a',
+									{ href: 'https://www.google.com/maps/place/' + _location.address + ' ' + _location.city, target: '_blank' },
+									_location.address
+								),
+								_react2['default'].createElement(
+									'p',
+									null,
+									_location.city
+								),
+								_react2['default'].createElement(
+									'a',
+									{ href: _location.website, target: '_blank' },
+									'Website'
+								)
+							)
+						)
+					);
+				} else {
+					return false;
+				}
+			}
+		}]);
+
+		return Pizzeria;
+	})(_react2['default'].Component);
+
+	exports['default'] = Pizzeria;
 	module.exports = exports['default'];
 
 /***/ }
