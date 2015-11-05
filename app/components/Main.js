@@ -15,7 +15,7 @@ export default class Main extends React.Component {
 							<span className="icon-bar"></span>
 							<span className="icon-bar"></span>
 						</button>
-						<a className="navbar-brand">Pizza Client</a>
+						<Link className="navbar-brand" to="/">{ this.props.name }</Link>
 					</div>
 					<div id="navbar" className="navbar-collapse collapse">
 						<ul className="nav navbar-nav">
@@ -28,4 +28,8 @@ export default class Main extends React.Component {
 			</nav>
 		)
 	}
+}
+
+Main.propTypes = {
+	name: React.PropTypes.string.isRequired
 }

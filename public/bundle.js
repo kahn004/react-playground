@@ -72,6 +72,10 @@
 
 	var _componentsMain2 = _interopRequireDefault(_componentsMain);
 
+	var _componentsHome = __webpack_require__(215);
+
+	var _componentsHome2 = _interopRequireDefault(_componentsHome);
+
 	var _componentsAbout = __webpack_require__(213);
 
 	var _componentsAbout2 = _interopRequireDefault(_componentsAbout);
@@ -105,7 +109,7 @@
 				return _react2['default'].createElement(
 					'div',
 					null,
-					_react2['default'].createElement(_componentsMain2['default'], { name: 'Router' }),
+					_react2['default'].createElement(_componentsMain2['default'], { name: 'React Sandbox' }),
 					this.props.children
 				);
 			}
@@ -122,9 +126,10 @@
 		_react2['default'].createElement(
 			_reactRouter.Route,
 			{ path: '/', component: App },
-			_react2['default'].createElement(_reactRouter.Route, { path: '/pizzerias', component: _componentsPizzerias2['default'] }),
-			_react2['default'].createElement(_reactRouter.Route, { path: '/pizzerias/:id', component: _componentsPizzeria2['default'] }),
-			_react2['default'].createElement(_reactRouter.Route, { path: 'about', component: _componentsAbout2['default'] })
+			_react2['default'].createElement(_reactRouter.IndexRoute, { component: _componentsHome2['default'] }),
+			_react2['default'].createElement(_reactRouter.Route, { path: 'about', component: _componentsAbout2['default'] }),
+			_react2['default'].createElement(_reactRouter.Route, { path: 'pizzerias', component: _componentsPizzerias2['default'] }),
+			_react2['default'].createElement(_reactRouter.Route, { path: 'pizzerias/:id', component: _componentsPizzeria2['default'] })
 		)
 	), document.getElementById('app'));
 	module.exports = exports['default'];
@@ -24775,9 +24780,9 @@
 								_react2['default'].createElement('span', { className: 'icon-bar' })
 							),
 							_react2['default'].createElement(
-								'a',
-								{ className: 'navbar-brand' },
-								'Pizza Client'
+								_reactRouter.Link,
+								{ className: 'navbar-brand', to: '/' },
+								this.props.name
 							)
 						),
 						_react2['default'].createElement(
@@ -24824,6 +24829,10 @@
 	})(_react2['default'].Component);
 
 	exports['default'] = Main;
+
+	Main.propTypes = {
+		name: _react2['default'].PropTypes.string.isRequired
+	};
 	module.exports = exports['default'];
 
 /***/ },
@@ -25108,9 +25117,9 @@
 		_createClass(Pizzeria, [{
 			key: 'render',
 			value: function render() {
-				var a = this.props.params.id - 1;
-				if (_apiApi2['default'][a].properties !== undefined) {
-					var _location = _apiApi2['default'][a].properties;
+				var id = this.props.params.id - 1;
+				if (_apiApi2['default'][id].properties !== undefined) {
+					var _location = _apiApi2['default'][id].properties;
 
 					return _react2['default'].createElement(
 						'div',
@@ -25159,6 +25168,58 @@
 	})(_react2['default'].Component);
 
 	exports['default'] = Pizzeria;
+	module.exports = exports['default'];
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	// app/components/Home.js
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var Home = (function (_React$Component) {
+		function Home() {
+			_classCallCheck(this, Home);
+
+			if (_React$Component != null) {
+				_React$Component.apply(this, arguments);
+			}
+		}
+
+		_inherits(Home, _React$Component);
+
+		_createClass(Home, [{
+			key: 'render',
+			value: function render() {
+				return _react2['default'].createElement(
+					'h1',
+					null,
+					'Home it is..'
+				);
+			}
+		}]);
+
+		return Home;
+	})(_react2['default'].Component);
+
+	exports['default'] = Home;
 	module.exports = exports['default'];
 
 /***/ }

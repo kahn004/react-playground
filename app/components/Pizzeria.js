@@ -6,10 +6,10 @@ import { Link } from 'react-router'
 import locations from '../api/api'
 
 export default class Pizzeria extends React.Component {
-	render() {
-		var a = this.props.params.id - 1;
-		if (locations[a].properties !== undefined) {
-			let location = locations[a].properties;
+	render () {
+		var id = this.props.params.id - 1;
+		if (locations[id].properties !== undefined) {
+			let location = locations[id].properties;
 
 			return (
 				<div>
