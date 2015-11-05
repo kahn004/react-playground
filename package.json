@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "history": "^1.12.5",
+    "node-uuid": "^1.4.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-router": "^1.0.0-rc3"
