@@ -104,10 +104,7 @@ let Pizzerias = React.createClass({
 	      return(
 	          <div className='thumbnail' key={index}>
 	            <div className='caption'>
-	              <h5>{location.pizzeria}</h5>
-	              <a href={"https://www.google.com/maps/place/" + location.address + ' ' + location.city} target='_blank'>{location.address}</a>
-	              <p>{location.city}</p>
-	              <a href={location.website} target='_blank'>Website</a>
+	              <h5><Link to={'/pizzerias/' + (index + 1)}>{location.pizzeria}</Link></h5>
 	            </div>
 	          </div>
 	      )
@@ -118,6 +115,78 @@ let Pizzerias = React.createClass({
 	          {pizzerias}
 	      </div>
 	    )
+	}
+});
+
+let Pizzeria = React.createClass({
+	getInitialState() {
+
+		return(
+			{
+				locations: [
+					{
+						type: 'Feature',
+						properties: {
+							city: "Oakland",
+							pizzeria: "Hi-Life",
+							website: "http://www.hilifeoakland.com",
+							address: "400 15th St",
+							markersize: "medium",
+							markercolor: "ffff00",
+							markersymbol: "restaurant"
+						},
+						geometry: {
+							type: "Point",
+							coordinates: [
+								-122.2694895,
+								37.805068
+							]
+						}
+					},
+					{
+						type: "Feature",
+						properties: {
+							city: "Oakland",
+							pizzeria: "Zachary's",
+							website: "http://zacharys.com/locations/oakland",
+							address: "5801 College Ave.",
+							markersize: "medium",
+							markercolor: "ffff00",
+							markersymbol: "restaurant"
+						},
+						geometry: {
+							type: "Point",
+							coordinates: [
+								-122.2521705,
+								37.8462724
+							]
+						}
+					}
+				]
+			}
+		)
+	},
+	render() {
+		var a = this.props.params.id - 1;
+		if (this.state.locations[a].properties !== undefined) {
+			let location = this.state.locations[a].properties;
+
+			return (
+				<div>
+		          <Link to='/pizzerias' className='btn btn-lg btn-danger' id='btn-back'>Back to list</Link>
+		          <div className='thumbnail'>
+		            <div className='caption'>
+		              <h5>{location.pizzeria}</h5>
+		              <a href={"https://www.google.com/maps/place/" + location.address + ' ' + location.city} target='_blank'>{location.address}</a>
+		              <p>{location.city}</p>
+		              <a href={location.website} target='_blank'>Website</a>
+		            </div>
+		          </div>
+		        </div>
+			)
+		} else {
+			return(false);
+		}	
 	}
 });
 
@@ -136,6 +205,7 @@ render((
   <Router>
     <Route path="/" component={App}>
       <Route path='/pizzerias' component={Pizzerias}/>
+      <Route path='/pizzerias/:id' component={Pizzeria}/>
       <Route path="about" component={About}/>
     </Route>
   </Router>
