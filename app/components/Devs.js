@@ -14,7 +14,7 @@ export default class Devs extends React.Component {
 		const devs = this.props.items
 
 		return (
-			<ol>
+			<ol style={{marginTop: 20 + 'px'}}>
 				{ devs.map(this.renderDev) }
 			</ol>	
 		)

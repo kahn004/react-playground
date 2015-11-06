@@ -6,11 +6,11 @@ export default class Dev extends React.Component {
 	constructor (props) {
 		super (props)
 
-		this.finishEdit = this.finishEdit.bind(this)
-		this.checkEnter = this.checkEnter.bind(this)
-		this.edit = this.edit.bind(this)
 		this.renderEdit = this.renderEdit.bind(this)
 		this.renderDev = this.renderDev.bind(this)
+		this.edit = this.edit.bind(this)
+		this.finishEdit = this.finishEdit.bind(this)
+		this.checkEnter = this.checkEnter.bind(this)
 
 		this.state = {
 			editing: false
@@ -39,10 +39,10 @@ export default class Dev extends React.Component {
 		const onDelete = this.props.onDelete
 
 		return (
-			<div onClick={this.edit}>
-				<h6>{ this.props.name }</h6>
+			<p onClick={this.edit}>
+				<strong>{ this.props.name }</strong>&nbsp;
 				{ onDelete ? this.renderDelete() : null }
-			</div>
+			</p>
 		)
 	}
 	renderDelete () {
