@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "array.prototype.findindex": "^1.0.0",
     "history": "^1.12.5",
     "node-uuid": "^1.4.3",
     "react": "^0.14.0",

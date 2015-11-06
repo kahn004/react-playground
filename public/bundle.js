@@ -74,6 +74,8 @@
 
 	var _reactDom = __webpack_require__(158);
 
+	__webpack_require__(161);
+
 	var _componentsDevs = __webpack_require__(159);
 
 	var _componentsDevs2 = _interopRequireDefault(_componentsDevs);
@@ -100,6 +102,9 @@
 			};
 
 			this.addDev = this.addDev.bind(this);
+			this.editDev = this.editDev.bind(this);
+			this.findDev = this.findDev.bind(this);
+			this.deleteDev = this.deleteDev.bind(this);
 		}
 
 		_createClass(App, [{
@@ -114,7 +119,7 @@
 						{ className: 'add-dev', onClick: this.addDev },
 						'Add developer'
 					),
-					_react2['default'].createElement(_componentsDevs2['default'], { items: devs })
+					_react2['default'].createElement(_componentsDevs2['default'], { items: devs, onEdit: this.editDev, onDelete: this.deleteDev })
 				);
 			}
 		}, {
@@ -123,6 +128,48 @@
 				this.setState({
 					devs: [].concat(_toConsumableArray(this.state.devs), [{ id: _nodeUuid2['default'].v4(), name: 'Click to add a developer' }])
 				});
+			}
+		}, {
+			key: 'editDev',
+			value: function editDev(devId, name) {
+				var devs = this.state.devs;
+				var devIndex = this.findDev(devId);
+
+				if (devIndex < 0) {
+					return;
+				}
+
+				devs[devIndex].name = name;
+
+				this.setState({ devs: devs });
+			}
+		}, {
+			key: 'deleteDev',
+			value: function deleteDev(devId) {
+				var devs = this.state.devs;
+				var devIndex = this.findDev(devId);
+
+				if (devIndex < 0) {
+					return;
+				}
+
+				this.setState({
+					devs: devs.slice(0, devIndex).concat(devs.slice(devIndex + 1))
+				});
+			}
+		}, {
+			key: 'findDev',
+			value: function findDev(devId) {
+				var devs = this.state.devs;
+				var devIndex = devs.findIndex(function (dev) {
+					return dev.id === devId;
+				});
+
+				if (devIndex < 0) {
+					console.log('Failed to find note', devs, devId);
+				}
+
+				return devIndex;
 			}
 		}]);
 
@@ -19967,10 +20014,12 @@
 	var Devs = (function (_React$Component) {
 		_inherits(Devs, _React$Component);
 
-		function Devs() {
+		function Devs(props) {
 			_classCallCheck(this, Devs);
 
-			_get(Object.getPrototypeOf(Devs.prototype), 'constructor', this).apply(this, arguments);
+			_get(Object.getPrototypeOf(Devs.prototype), 'constructor', this).call(this, props);
+
+			this.renderDev = this.renderDev.bind(this);
 		}
 
 		_createClass(Devs, [{
@@ -19979,7 +20028,7 @@
 				var devs = this.props.items;
 
 				return _react2['default'].createElement(
-					'ul',
+					'ol',
 					null,
 					devs.map(this.renderDev)
 				);
@@ -19990,7 +20039,10 @@
 				return _react2['default'].createElement(
 					'li',
 					{ className: 'dev', key: dev.id },
-					_react2['default'].createElement(_Dev2['default'], { name: dev.name })
+					_react2['default'].createElement(_Dev2['default'], {
+						name: dev.name,
+						onEdit: this.props.onEdit.bind(null, dev.id),
+						onDelete: this.props.onDelete.bind(null, dev.id) })
 				);
 			}
 		}]);
@@ -20007,21 +20059,21 @@
 
 	// app/components/Dev.js
 
-	'use strict';
+	"use strict";
 
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var _react = __webpack_require__(2);
 
@@ -20030,28 +20082,136 @@
 	var Dev = (function (_React$Component) {
 		_inherits(Dev, _React$Component);
 
-		function Dev() {
+		function Dev(props) {
 			_classCallCheck(this, Dev);
 
-			_get(Object.getPrototypeOf(Dev.prototype), 'constructor', this).apply(this, arguments);
+			_get(Object.getPrototypeOf(Dev.prototype), "constructor", this).call(this, props);
+
+			this.finishEdit = this.finishEdit.bind(this);
+			this.checkEnter = this.checkEnter.bind(this);
+			this.edit = this.edit.bind(this);
+			this.renderEdit = this.renderEdit.bind(this);
+			this.renderDev = this.renderDev.bind(this);
+
+			this.state = {
+				editing: false
+			};
 		}
 
 		_createClass(Dev, [{
-			key: 'render',
+			key: "render",
 			value: function render() {
-				return _react2['default'].createElement(
-					'h1',
+				var editing = this.state.editing;
+
+				return _react2["default"].createElement(
+					"div",
 					null,
-					this.props.name
+					editing ? this.renderEdit() : this.renderDev()
 				);
+			}
+		}, {
+			key: "renderEdit",
+			value: function renderEdit() {
+				return _react2["default"].createElement("input", {
+					type: "type",
+					autoFocus: true,
+					defaultValue: this.props.name,
+					onBlur: this.finishEdit,
+					onKeyPress: this.checkEnter });
+			}
+		}, {
+			key: "renderDev",
+			value: function renderDev() {
+				var onDelete = this.props.onDelete;
+
+				return _react2["default"].createElement(
+					"div",
+					{ onClick: this.edit },
+					_react2["default"].createElement(
+						"h6",
+						null,
+						this.props.name
+					),
+					onDelete ? this.renderDelete() : null
+				);
+			}
+		}, {
+			key: "renderDelete",
+			value: function renderDelete() {
+				return _react2["default"].createElement(
+					"button",
+					{ className: "delete", onClick: this.props.onDelete },
+					"delete"
+				);
+			}
+		}, {
+			key: "edit",
+			value: function edit() {
+				this.setState({
+					editing: true
+				});
+			}
+		}, {
+			key: "finishEdit",
+			value: function finishEdit(e) {
+				this.props.onEdit(e.target.value);
+
+				this.setState({
+					editing: false
+				});
+			}
+		}, {
+			key: "checkEnter",
+			value: function checkEnter(e) {
+				if (e.key === 'Enter') {
+					this.finishEdit(e);
+				}
 			}
 		}]);
 
 		return Dev;
-	})(_react2['default'].Component);
+	})(_react2["default"].Component);
 
-	exports['default'] = Dev;
-	module.exports = exports['default'];
+	exports["default"] = Dev;
+	module.exports = exports["default"];
+
+/***/ },
+/* 161 */
+/***/ function(module, exports) {
+
+	// Array.prototype.findIndex - MIT License (c) 2013 Paul Miller <http://paulmillr.com>
+	'use strict';
+
+	(function (globals) {
+	  if (Array.prototype.findIndex) return;
+
+	  var findIndex = function findIndex(predicate) {
+	    var list = Object(this);
+	    var length = Math.max(0, list.length) >>> 0; // ES.ToUint32;
+	    if (length === 0) return -1;
+	    if (typeof predicate !== 'function' || Object.prototype.toString.call(predicate) !== '[object Function]') {
+	      throw new TypeError('Array#findIndex: predicate must be a function');
+	    }
+	    var thisArg = arguments.length > 1 ? arguments[1] : undefined;
+	    for (var i = 0; i < length; i++) {
+	      if (predicate.call(thisArg, list[i], i, list)) return i;
+	    }
+	    return -1;
+	  };
+
+	  if (Object.defineProperty) {
+	    try {
+	      Object.defineProperty(Array.prototype, 'findIndex', {
+	        value: findIndex, configurable: true, writable: true
+	      });
+	    } catch (e) {}
+	  }
+
+	  if (!Array.prototype.findIndex) {
+	    Array.prototype.findIndex = findIndex;
+	  }
+	})(undefined);
+	// For all details and docs: <https://github.com/paulmillr/Array.prototype.findIndex>
 
 /***/ }
 /******/ ]);
