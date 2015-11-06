@@ -58,6 +58,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
@@ -72,7 +74,7 @@
 
 	var _reactDom = __webpack_require__(158);
 
-	var _componentsDevs = __webpack_require__(160);
+	var _componentsDevs = __webpack_require__(159);
 
 	var _componentsDevs2 = _interopRequireDefault(_componentsDevs);
 
@@ -96,6 +98,8 @@
 					name: 'Ayodeji Beckly'
 				}]
 			};
+
+			this.addDev = this.addDev.bind(this);
 		}
 
 		_createClass(App, [{
@@ -105,8 +109,20 @@
 				return _react2['default'].createElement(
 					'div',
 					null,
+					_react2['default'].createElement(
+						'button',
+						{ className: 'add-dev', onClick: this.addDev },
+						'Add developer'
+					),
 					_react2['default'].createElement(_componentsDevs2['default'], { items: devs })
 				);
+			}
+		}, {
+			key: 'addDev',
+			value: function addDev() {
+				this.setState({
+					devs: [].concat(_toConsumableArray(this.state.devs), [{ id: _nodeUuid2['default'].v4(), name: 'Click to add a developer' }])
+				});
 			}
 		}]);
 
@@ -19922,6 +19938,73 @@
 /* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// app/components/Devs.js
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+		value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Dev = __webpack_require__(160);
+
+	var _Dev2 = _interopRequireDefault(_Dev);
+
+	var Devs = (function (_React$Component) {
+		_inherits(Devs, _React$Component);
+
+		function Devs() {
+			_classCallCheck(this, Devs);
+
+			_get(Object.getPrototypeOf(Devs.prototype), 'constructor', this).apply(this, arguments);
+		}
+
+		_createClass(Devs, [{
+			key: 'render',
+			value: function render() {
+				var devs = this.props.items;
+
+				return _react2['default'].createElement(
+					'ul',
+					null,
+					devs.map(this.renderDev)
+				);
+			}
+		}, {
+			key: 'renderDev',
+			value: function renderDev(dev) {
+				return _react2['default'].createElement(
+					'li',
+					{ className: 'dev', key: dev.id },
+					_react2['default'].createElement(_Dev2['default'], { name: dev.name })
+				);
+			}
+		}]);
+
+		return Devs;
+	})(_react2['default'].Component);
+
+	exports['default'] = Devs;
+	module.exports = exports['default'];
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// app/components/Dev.js
 
 	'use strict';
@@ -19968,73 +20051,6 @@
 	})(_react2['default'].Component);
 
 	exports['default'] = Dev;
-	module.exports = exports['default'];
-
-/***/ },
-/* 160 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// app/components/Devs.js
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-		value: true
-	});
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(2);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _Dev = __webpack_require__(159);
-
-	var _Dev2 = _interopRequireDefault(_Dev);
-
-	var Devs = (function (_React$Component) {
-		_inherits(Devs, _React$Component);
-
-		function Devs() {
-			_classCallCheck(this, Devs);
-
-			_get(Object.getPrototypeOf(Devs.prototype), 'constructor', this).apply(this, arguments);
-		}
-
-		_createClass(Devs, [{
-			key: 'render',
-			value: function render() {
-				var devs = this.props.items;
-
-				return _react2['default'].createElement(
-					'ul',
-					null,
-					devs.map(this.renderDev)
-				);
-			}
-		}, {
-			key: 'renderDev',
-			value: function renderDev(dev) {
-				return _react2['default'].createElement(
-					'li',
-					{ className: 'dev', key: dev.id },
-					_react2['default'].createElement(_Dev2['default'], { name: dev.name })
-				);
-			}
-		}]);
-
-		return Devs;
-	})(_react2['default'].Component);
-
-	exports['default'] = Devs;
 	module.exports = exports['default'];
 
 /***/ }

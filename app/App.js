@@ -26,14 +26,22 @@ export default class App extends React.Component {
 				}
 			]
 		}
+
+		this.addDev = this.addDev.bind(this)
 	}
 	render () {
 		const devs = this.state.devs
 		return (
 			<div>
+				<button className="add-dev" onClick={this.addDev}>Add developer</button>
 				<Devs items={devs} />
 			</div>
 		)
+	}
+	addDev () {
+		this.setState({
+			devs: [...this.state.devs, {id: uuid.v4(), name: 'Click to add a developer'}]
+		})
 	}
 }
 
