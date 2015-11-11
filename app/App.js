@@ -1,9 +1,7 @@
 // app/App.js
 
-// import uuid from 'node-uuid'
 import React from 'react'
 import { render } from 'react-dom'
-//import 'array.prototype.findindex'
 
 import Devs from './components/Devs'
 
